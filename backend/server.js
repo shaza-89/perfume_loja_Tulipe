@@ -9,6 +9,8 @@ const app = express();
 app.use(bodyParser.json());
 
 
+
+
 /* Leitura da data */
 const readData = () => {
     try{
