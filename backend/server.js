@@ -1,18 +1,12 @@
 import express from "express";
 import fs from "fs";  /* Modulo integrado de node, ele permite trabalhar com o file system ou pastas no sistema node (pasta do projeto.) */
 import bodyParser from "body-parser";
-const { Sequelize } = require('sequelize');
+
 
 
 const port = 5000;
 const app = express();
 app.use(bodyParser.json());
-
-/* Conexao base dados */
-const sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: 'database.db'
-  });
 
 
 /* Leitura da data */
