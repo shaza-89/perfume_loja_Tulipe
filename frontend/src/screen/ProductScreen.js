@@ -1,14 +1,27 @@
-import React from 'react'
+
+import {useEffect , useState} from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/Rating'
-import Perfumes from '../Products'
+import axios from 'axios'
+// import Perfumes from '../components/Products'
 // import Loader from '../components/Loader'
 
 const ProductScreen = () => {
+      const [Perfume, setPerfume] = useState([]);
+
   const { id: productId } = useParams();
-  const Perfume = Perfumes.find((p) => p._id === productId);
+
+  useEffect(() => {
+        const fetchPerfume = async () => {
+            const { data } = await axios.get(`/api/Perfumes/${productId}`);
+            setPerfume(data);
+        };
+
+        fetchPerfume();
+  }, [productId]);
+  
   return (
     <>
       <Link className='btn btn-light my-3' to="/">volte</Link>
@@ -22,14 +35,15 @@ const ProductScreen = () => {
         <Col md={4}>
           <ListGroup variant='flush'>
           <ListGroup.Item>
-           <h3>{Perfume.name}</h3>
+           <h3>{Perfume.name }</h3>
           </ListGroup.Item>
           <ListGroup.Item>
            <Rating value={Perfume.rating} text={`${Perfume.numReviews} avaliações`} />
             </ListGroup.Item>
-            <ListGroup.Item>Valor: ${Perfume.price}</ListGroup.Item>
+            <ListGroup.Item><strong>
+            Valor:</strong> ${Perfume.price}</ListGroup.Item>
             <ListGroup.Item>
-            Descrição: {Perfume.description}
+            <strong>Descrição:</strong> {Perfume.description}
           </ListGroup.Item>
         </ListGroup>
         </Col>

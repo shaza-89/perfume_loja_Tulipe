@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { Row, Col, ListGroup, Image, Button, Card } from "react-bootstrap";
 import { FaTrash } from 'react-icons/fa';
 import Message from '../components/Message';
-import Perfumes from '../Products'
-
+import Perfumes
+    from '../components/Products';
 const CartScreen = () => {
     return (
         <Row>
