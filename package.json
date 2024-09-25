@@ -5,12 +5,11 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon backend/server.js"
+    "start": "node backend/server.js"
   },
   "author": "shaza alsamman",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.21.0",
-    "nodemon": "^3.1.7"
+    "express": "^4.21.0"
   }
 }
