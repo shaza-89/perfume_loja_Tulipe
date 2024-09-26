@@ -21,14 +21,6 @@ app.use(notFound);
 
 app.use(errorHandler);
 
-// app.get("/api/Perfumes", (req, res) => {
-//     res.json(Perfumes);
-// });
-
-// app.get("/api/Perfumes/:id", (req, res) => {
-//     const Perfume = Perfumes.find((p) => p._id === req.params.id);
-//     res.json(Perfume);
-// });
 
 
 
