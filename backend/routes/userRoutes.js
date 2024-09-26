@@ -10,7 +10,8 @@ import {
   getUserById,
   updateUser,
 } from "../controllers/userController.js"
-import { admin } from '../middleware/authMiddleware.js';
+
+import {admin} from '../middleware/authMiddleware.js';
 
 
 const router = express.Router();
