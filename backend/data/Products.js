@@ -106,6 +106,7 @@ const Perfumes = [
     rating: 4,
     numReviews: 16,
   },
+
 ];
  
 export default Perfumes;

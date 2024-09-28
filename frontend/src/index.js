@@ -24,7 +24,7 @@ const router = createBrowserRouter(
       <Route path='/Perfume/:id' element={<ProductScreen />} />
       <Route path='/login' element={<LoginScreen />} />
       <Route path='/Cart' element={<CartScreen />} />
-       <Route path='/register' element={<RegisterScreen />} />
+      <Route path='/register' element={<RegisterScreen />} />
 
 
 
