@@ -1,60 +1,68 @@
-import React from 'react'
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, ListGroup, Image, Button, Card } from "react-bootstrap";
+import { Row, Col, ListGroup, Image, Button, Card } from 'react-bootstrap';
 import { FaTrash } from 'react-icons/fa';
 import Message from '../components/Message';
-import Perfumes
-    from '../components/Products';
-const CartScreen = () => {
-    return (
-        <Row>
-            <Col md={8}>
-                <h1 style={{ marginBottom: '20px' }}>Carrinho de compras</h1>
-                <Message >
-                    Seu carrinho está vazio <Link to="/">Voltar</Link>
-                </Message>
+import { CartContext } from '../components/cartContext'; 
 
-                <ListGroup variant='flush'>
-                    {Perfumes.map((Perfume) => (
-                        <ListGroup.Item key={Perfumes._id}>
-                            <Row>
-                                <Col md={2}>
-                                    <Image src={Perfume.image} alt={Perfume.name} fluid rounded />
-                                </Col>
-                                <Col md={3}>
-                                    <Link to={`/perfume/${Perfumes._id}`}>{Perfume.name}</Link>
-                                </Col>
-                                <Col md={2}>${Perfume.price}</Col>
-                                <Col md={2}>
-                                 Unid
-                                </Col>
-                                <Col md={2}>
-                                    <Button type='button' variant='light'>
-                                        <FaTrash />
-                                    </Button>
-                                </Col>
-                                 </Row>
-                        </ListGroup.Item>
-                    ))};
-                        </ListGroup>
-                         </Col>
-                                <Col md={4}>
-                                    <Card>
-                                        <ListGroup variant='flush'>
-                                            <ListGroup.Item>                         
-                                             <h2>Subtotal ... Unid</h2>
-                                             </ListGroup.Item>   
-                                                                                                                                      
-                                             <ListGroup.Item>
-                                                <Button type='button' className='btn-block'>
-                                                    Fazer o check-out
-                                                </Button>
-                                             </ListGroup.Item>
-                                        </ListGroup>
-                                    </Card> 
-                                </Col>
-        </Row>
-    );
+const CartScreen = () => {
+  const { cart, removeFromCart } = useContext(CartContext);  // Access cart and removeFromCart
+
+  return (
+    <Row>
+      <Col md={8}>
+        <h1 style={{ marginBottom: '20px' }}>Carrinho de compras</h1>
+
+        {cart.length === 0 ? (
+          <Message>
+            Seu carrinho está vazio <Link to="/">Voltar</Link>
+          </Message>
+        ) : (
+          <ListGroup variant='flush'>
+            {cart.map((Perfume) => (
+              <ListGroup.Item key={Perfume.id}>
+                <Row>
+                  <Col md={2}>
+                    <Image src={Perfume.image} alt={Perfume.name} fluid rounded />
+                  </Col>
+                  <Col md={3}>
+                    <Link to={`/perfume/${Perfume.id}`}>{Perfume.name}</Link>
+                  </Col>
+                  <Col md={2}>${Perfume.price}</Col>
+                  <Col md={2}>
+                    {Perfume.qty}
+                  </Col>
+                  <Col md={2}>
+                    <Button type='button' variant='light' onClick={() => removeFromCart(Perfume.id)}>
+                      <FaTrash />
+                    </Button>
+                  </Col>
+                </Row>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        )}
+      </Col>
+      <Col md={4}>
+        <Card>
+          <ListGroup variant='flush'>
+            <ListGroup.Item>
+              <h2>
+                Subtotal ({cart.reduce((acc, Perfume) => acc + Perfume.qty, 0)} Unid)
+              </h2>
+              Total: $
+              {cart.reduce((acc, Perfume) => acc + Perfume.qty * Perfume.price, 0).toFixed(2)}
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button type='button' className='btn-block' disabled={cart.length === 0}>
+                Fazer o check-out
+              </Button>
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
+      </Col>
+    </Row>
+  );
 };
 
-export default CartScreen
+export default CartScreen;

@@ -1,17 +1,22 @@
 
-import {useEffect , useState} from 'react'
+import {useEffect , useState ,useContext} from 'react'
 import { useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import axios from 'axios'
+import { CartContext } from '../components/cartContext';  
+
 // import Perfumes from '../components/Products'
 // import Loader from '../components/Loader'
 
 const ProductScreen = () => {
-      const [Perfume, setPerfume] = useState([]);
+  const [Perfume, setPerfume] = useState({});
+
 
   const { id: productId } = useParams();
+    const { addToCart } = useContext(CartContext);
+
 
   useEffect(() => {
         const fetchPerfume = async () => {
@@ -21,6 +26,10 @@ const ProductScreen = () => {
 
         fetchPerfume();
   }, [productId]);
+
+
+
+
   
   return (
     <>
@@ -71,7 +80,8 @@ const ProductScreen = () => {
                 <Button
                   className='btn-block'
                   type='butoon'
-                  disabled = {Perfume.countInStock === 0}
+                  disabled={Perfume.countInStock === 0}
+                  onClick={() => addToCart(Perfume)} // Add to cart on click
                 >
                   Adicionar ao carrinho
                 </Button>

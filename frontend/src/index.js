@@ -16,6 +16,8 @@ import ProductScreen from './screen/ProductScreen';
 import LoginScreen from './screen/LoginScreen';
 import CartScreen from './screen/CartScreen';
 import RegisterScreen from './screen/RegisterScreen';
+import { CartProvider } from './components/cartContext';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,10 +37,14 @@ const router = createBrowserRouter(
   )
 )
 
+ 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CartProvider>
+ 
+      <RouterProvider router={router} />
+       </CartProvider>
   </React.StrictMode>
 );
 

@@ -26,18 +26,18 @@ const LoginScreen = () => {
                 config
             );
 
-            console.log(data);  // Data will include user details
-            // Store token or user info in local storage / state if needed
-         localStorage.setItem('userInfo', JSON.stringify(data));
-
-         navigate('/');
+        //  console.log(data);  
          
+          if (data.error) {
+        setError(data.error);
+      } else {
+        localStorage.setItem('userInfo', JSON.stringify(data));
+        navigate('/');
+      }
 
-          
-
-        } catch (error) {
-            setError('Invalid email or password');
-        }
+    } catch (error) {
+      setError('Erro ao realizar login. Verifique seu e-mail ou senha.');
+    }
     
   };
       
