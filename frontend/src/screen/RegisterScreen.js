@@ -18,7 +18,7 @@ const RegisterScreen = () => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      setError('A senha não corresponde');
       return;
     }
 
@@ -43,7 +43,7 @@ const RegisterScreen = () => {
         navigate('/login');
       }, 2000);
     } catch (error) {
-      setError('Error registering user');
+      setError('Erro ao registrar usuário');
     }
     
   };
