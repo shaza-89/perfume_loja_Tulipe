@@ -1,11 +1,9 @@
-
 const Perfumes = [
   {
     _id: "1",
     name: "Cerejeira Perfume",
     image: "/images/cerejeira-perfume.jpg",
-    description:
-      "",
+    description: "Un perfume fresco y floral con notas de cereza.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 189.99,
@@ -15,10 +13,9 @@ const Perfumes = [
   },
   {
     _id: "2",
-    name: "Flor_rosa Perfume",
+    name: "Flor Rosa Perfume",
     image: "/images/flor-rosa-perfume.jpg",
-    description:
-      "",
+    description: "Un aroma suave y romántico que evoca un jardín en flor.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 159.99,
@@ -28,10 +25,9 @@ const Perfumes = [
   },
   {
     _id: "3",
-    name: "lírio Perfume",
-    image: "/images/lírio-perfume.jpg",
-    description:
-      "",
+    name: "Lírio Perfume",
+    image: "/images/lirio-perfume.jpg",
+    description: "Perfume con notas de lirio que ofrece una fragancia sofisticada.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 229.99,
@@ -42,9 +38,8 @@ const Perfumes = [
   {
     _id: "4",
     name: "Mar Perfume",
-    image: "/images/mar perfume.jpg",
-    description:
-      "",
+    image: "/images/mar-perfume.jpg",
+    description: "Fragancia fresca y acuática que recuerda al océano.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 249.99,
@@ -55,9 +50,8 @@ const Perfumes = [
   {
     _id: "5",
     name: "Orquídea Perfume",
-    image: "/images/orquídea -perfume.jpg",
-    description:
-      " ",
+    image: "/images/orquidea-perfume.jpg",
+    description: "Un perfume exótico y floral que captura la esencia de la orquídea.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 249.99,
@@ -68,9 +62,8 @@ const Perfumes = [
   {
     _id: "6",
     name: "Tulipe Perfume",
-    image: "/images/Tulipe-perfume.jpg",
-    description:
-      " ",
+    image: "/images/tulipe-perfume.jpg",
+    description: "Perfume clásico con un toque moderno, ideal para el uso diario.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 199.99,
@@ -81,9 +74,8 @@ const Perfumes = [
   {
     _id: "7",
     name: "Jasmin Perfume",
-    image: "/images/Jasmim-perfume.jpg",
-    description:
-      " ",
+    image: "/images/jasmin-perfume.jpg",
+    description: "Aroma dulce y seductor con notas de jazmín.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 180.00,
@@ -94,9 +86,8 @@ const Perfumes = [
   {
     _id: "8",
     name: "Mulher Perfume",
-    image: "/images/Perfume-feminino.jpg",
-    description:
-      " ",
+    image: "/images/perfume-feminino.jpg",
+    description: "Fragancia femenina y elegante para cualquier ocasión.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 160.00,
@@ -106,17 +97,17 @@ const Perfumes = [
   },
   {
     _id: "9",
-    name: "Capim-dos-pampas perfume",
-    image: "/images/Capim-dos-pampas perfume.jpg",
-    description:
-      " ",
+    name: "Capim-dos-Pampas Perfume",
+    image: "/images/capim-dos-pampas-perfume.jpg",
+    description: "Una fragancia única que evoca la frescura de la naturaleza.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 200.00,
-    countInStock: 0,
+    countInStock: 0, // Agregar lógica para indicar que está fuera de stock
     rating: 4,
     numReviews: 16,
   },
 ];
- 
+
 export default Perfumes;
+
