@@ -1,10 +1,26 @@
+/* Estilos generales de la aplicación */
 .App {
   text-align: center;
+  background-color: #f8f9fa; /* Fondo más suave para la aplicación */
+  min-height: 100vh; /* Asegura que cubra toda la altura de la ventana */
 }
 
+.App-header {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  padding: 20px; /* Espaciado interno para mejorar la estética */
+}
+
+/* Animación para el logo */
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+  animation: App-logo-spin infinite 20s linear; /* Aplicar animación por defecto */
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -13,17 +29,7 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
+/* Enlaces */
 .App-link {
   color: #61dafb;
 }
@@ -37,8 +43,10 @@
   margin-top: 20px;
   width: 300px;
   text-align: left;
+  animation: fade-in 0.5s ease-in-out; /* Aplicar animación de entrada */
 }
 
+/* Estilos para los elementos del carrito */
 .cart-item {
   display: flex;
   justify-content: space-between;
@@ -47,7 +55,7 @@
 }
 
 .cart-item:last-child {
-  border-bottom: none;
+  border-bottom: none; /* Eliminar borde en el último elemento */
 }
 
 .cart-item button {
@@ -60,7 +68,7 @@
 }
 
 .cart-item button:hover {
-  background-color: #e63939;
+  background-color: #e63939; /* Cambio de color al pasar el mouse */
 }
 
 .cart-total {
@@ -76,7 +84,6 @@
   to {
     transform: rotate(360deg);
   }
-
 }
 
 @keyframes fade-in {
@@ -86,9 +93,4 @@
   to {
     opacity: 1;
   }
-}
-
-/* Aplicar la animación de entrada */
-.cart {
-  animation: fade-in 0.5s ease-in-out;
-}
+  }
