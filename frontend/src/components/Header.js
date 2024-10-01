@@ -16,9 +16,7 @@ const Header = () => {
         const storedUserInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
         setUserInfo(storedUserInfo);
         
-        // const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-        // const totalPerfumes = cart.reduce((acc, Perfume) => acc + Perfume.qty, 0);
-        // setCartPerfumeCount(totalPerfumes);
+       
 
     }, []);
 
