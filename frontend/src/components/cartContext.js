@@ -21,11 +21,10 @@ export const CartProvider = ({ children }) => {
 
   // Log the updated cart whenever the cart state changes
   useEffect(() => {
-    console.log('Updated Cart:', cart);
   }, [cart]);
 
   const removeFromCart = (id) => {
-    console.log(id)
+   
     setCart(cart.filter((Perfume) => Perfume._id !== id));
   };
   const updateCartQty = (Perfume, qty) => {

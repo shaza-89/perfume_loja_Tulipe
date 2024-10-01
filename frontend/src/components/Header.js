@@ -1,21 +1,24 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import {Badge, Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { FaShoppingCart, FaUser } from 'react-icons/fa';
 import { LinkContainer } from 'react-router-bootstrap';
 import logo from '../assests/styles/logo.png';
+import { CartContext } from './cartContext'; 
 
 const Header = () => {
+    const { cart } = useContext(CartContext);
     const [userInfo, setUserInfo] = useState(null);
-     const [CartPerfumeCount, setCartPerfumeCount] = useState(0); 
+    // const [ setCartPerfumeCount] = useState(0); 
+    const totalPerfumes = cart.reduce((acc, Perfume) => acc + Perfume.qty, 0);
 
     useEffect(() => {
         // Get user info from localStorage
         const storedUserInfo = localStorage.getItem('userInfo') ? JSON.parse(localStorage.getItem('userInfo')) : null;
         setUserInfo(storedUserInfo);
         
-        const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-        const totalPerfumes = cart.reduce((acc, Perfume) => acc + Perfume.qty, 0);
-        setCartPerfumeCount(totalPerfumes);
+        // const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+        // const totalPerfumes = cart.reduce((acc, Perfume) => acc + Perfume.qty, 0);
+        // setCartPerfumeCount(totalPerfumes);
 
     }, []);
 
@@ -40,15 +43,11 @@ const Header = () => {
                             <LinkContainer to='/cart'>
                                 <Nav.Link>
                                     <FaShoppingCart /> Carrinho
-                                    {CartPerfumeCount > 0 && (
+                                    {totalPerfumes > 0 && (
                                         <Badge pill bg='success' style={{ marginLeft: "5px" }}>
-                                            {CartPerfumeCount}
-
+                                            {totalPerfumes}
                                         </Badge>
-                                        // <span className="badge badge-pill badge-danger ml-2">
-                                        //     {CartPerfumeCount}
-                                        // </span>
-                                    )}
+                      )}
                                 </Nav.Link>
                             </LinkContainer>
 
