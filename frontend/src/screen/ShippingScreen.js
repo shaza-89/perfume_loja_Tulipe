@@ -44,7 +44,6 @@ const ShippingScreen = () => {
           <Form.Control
             type='text'
             placeholder='Digite o seu Estado'
-            value={city}
             required
             onChange={(e) => setCity(e.target.value)}
           ></Form.Control>

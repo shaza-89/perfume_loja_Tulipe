@@ -7,7 +7,7 @@ import { CartContext } from '../components/cartContext';
 
 const CartScreen = () => {
       const navigate = useNavigate();
-  const { cart, removeFromCart } = useContext(CartContext);  // Access cart and removeFromCart
+  const { cart, removeFromCart, updateCartQty } = useContext(CartContext);  // Access cart and removeFromCart
 
  
     
@@ -37,8 +37,7 @@ const CartScreen = () => {
                     <Form.Control
                             as='select'
                             value={Perfume.qty}
-                            onChange={(e) => {}}
-                          >
+                           onChange={(e) => updateCartQty(Perfume, Number(e.target.value))}         >
                             {[...Array(Perfume.countInStock).keys()].map(
                               (x) => (
                                 <option key={x + 1} value={x + 1}>
@@ -49,7 +48,7 @@ const CartScreen = () => {
                           </Form.Control>
                   </Col>
                   <Col md={2}>
-                    <Button type='button' variant='light' onClick={() => removeFromCart(Perfume.id)}>
+                    <Button type='button' variant='light' onClick={() => removeFromCart(Perfume._id)}>
                       <FaTrash />
                     </Button>
                   </Col>

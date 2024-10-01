@@ -110,7 +110,8 @@ const ProductScreen = () => {
                   className='btn-block'
                   type='butoon'
                   disabled={Perfume.countInStock === 0}
-                  onClick={() => addToCart(Perfume)} // Add to cart on click
+                  
+                  onClick={() => addToCart(Perfume, qty)} // Add to cart on click
                 >
                   Adicionar ao carrinho
                 </Button>

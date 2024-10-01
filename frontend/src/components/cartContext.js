@@ -1,29 +1,44 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  const addToCart = (Perfume) => {
-    const exists = cart.find((Perfume) => Perfume.id);
+  const addToCart = (Perfume, qty) => {
+    const exists = cart.find((p) => p._id === Perfume._id);
 
     if (exists) {
-      setCart(cart.map((Perfume) =>
-       Perfume.id ? { ...Perfume, qty: Perfume.qty + 1 } : Perfume
-      ));
+      setCart(
+        cart.map((p) =>
+          p.id === exists.id ? { ...p, qty: p.qty ? p.qty + qty : qty } : p
+        )
+      );
     } else {
-      setCart([...cart, { ...Perfume, qty: 1 }]);
+      setCart([...cart, { ...Perfume, qty }]);
     }
   };
 
+  // Log the updated cart whenever the cart state changes
+  useEffect(() => {
+    console.log('Updated Cart:', cart);
+  }, [cart]);
+
   const removeFromCart = (id) => {
-    setCart(cart.filter(Perfume => Perfume.id !== id));
+    console.log(id)
+    setCart(cart.filter((Perfume) => Perfume._id !== id));
   };
+  const updateCartQty = (Perfume, qty) => {
+    setCart((cart) =>
+      cart.map((p) =>
+        p._id === Perfume._id ? { ...p, qty: qty } : p
+   )
+);
+};
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart,updateCartQty }}>
       {children}
     </CartContext.Provider>
-  );
+);
 };

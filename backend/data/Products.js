@@ -106,6 +106,18 @@ const Perfumes = [
     rating: 4,
     numReviews: 16,
   },
+  {
+    name: " lilas perfume",
+    image: "images/Lilas Perfume.jpg",
+    description:
+      "Capim-dos-pampas Perfume é uma fragrância leve e refrescante, inspirada nas vastas paisagens naturais. Com notas herbais suaves e um toque levemente amadeirado, transmite uma sensação de frescor e liberdade. Ideal para quem busca um perfume sutil e revigorante, perfeito para o uso diário. ",
+    brand: "Tulipe",
+    category: "Natural Perfume",
+    price: 200.00,
+    countInStock: 5,
+    rating: 4,
+    numReviews: 16,
+  },
 
 ];
  
