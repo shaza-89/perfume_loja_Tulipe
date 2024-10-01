@@ -18,7 +18,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const removeFromCart = (id) => {
-    setCart(cart.filter(Perfume=> Perfume.id !== id));
+    setCart(cart.filter(Perfume => Perfume.id !== id));
   };
 
   return (

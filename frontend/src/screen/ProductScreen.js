@@ -1,8 +1,8 @@
 
 import {useEffect , useState ,useContext} from 'react'
-import { useParams } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
+import { Form,Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/Rating'
 import axios from 'axios'
 import { CartContext } from '../components/cartContext';  
@@ -12,9 +12,12 @@ import { CartContext } from '../components/cartContext';
 
 const ProductScreen = () => {
   const [Perfume, setPerfume] = useState({});
+  
 
 
   const { id: productId } = useParams();
+    const [qty, setQty] = useState(1);
+
     const { addToCart } = useContext(CartContext);
 
 
@@ -76,6 +79,32 @@ const ProductScreen = () => {
                   </Col>
                 </Row>
               </ListGroup.Item>
+
+            
+                {Perfume.countInStock > 0 && (
+                    <ListGroup.Item>
+                      <Row>
+                    <Col>Qty</Col>  
+                    <Col>
+                          <Form.Control
+                            as='select'
+                            value={qty}
+                            onChange={(e) => setQty(Number(e.target.value))}
+                          >
+                            {[...Array(Perfume.countInStock).keys()].map(
+                              (x) => (
+                                <option key={x + 1} value={x + 1}>
+                                  {x + 1}
+                                </option>
+                              )
+                            )}
+                          </Form.Control>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+                  )}
+             
+              
               <ListGroup.Item>
                 <Button
                   className='btn-block'
