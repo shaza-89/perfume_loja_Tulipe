@@ -6,14 +6,14 @@ import {
   Route,
   RouterProvider
 } from "react-router-dom";
-import './assets/styles/bootstrap.custom.css'; // Corrige la carpeta 'assests' a 'assets'
+import './assets/styles/bootstrap.custom.css';
 import './assets/styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import HomeScreen from './screen/HomeScreen';
 import ProductScreen from './screen/ProductScreen';
 import LoginScreen from './screen/LoginScreen';
-import CartScreen from './screen/CartScreen';
+import CartScreen from './screen/CartScreen'; // Asegúrate de que este componente esté configurado para el backend
 import RegisterScreen from './screen/RegisterScreen';
 
 // Configuración de rutas
