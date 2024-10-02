@@ -1,37 +1,58 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
-import Rating from '../components/Rating'
-import Perfumes from '../Products'
-// import Loader from '../components/Loader'
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { Row, Col, Image, ListGroup, Card, Button, Spinner } from 'react-bootstrap';
+import Rating from '../components/Rating';
 
 const ProductScreen = () => {
   const { id: productId } = useParams();
-  const Perfume = Perfumes.find((p) => p._id === productId);
+  const [perfume, setPerfume] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchPerfume = async () => {
+      try {
+        const response = await fetch(`/api/perfumes/${productId}`); // URL del backend
+        if (!response.ok) {
+          throw new Error('No se pudo cargar el producto');
+        }
+        const data = await response.json();
+        setPerfume(data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPerfume();
+  }, [productId]);
+
+  if (loading) return <Spinner animation="border" />;
+  if (error) return <div>{error}</div>;
+
   return (
     <>
-      <Link className='btn btn-light my-3' to="/">volte</Link>
+      <Link className='btn btn-light my-3' to="/">Volver</Link>
       
-      {/* <Loader /> */}
       <Row>
         <Col md={5}>
-          <Image src={Perfume.image} alt={Perfume.name} fluid />
+          <Image src={perfume.image} alt={perfume.name} fluid />
         </Col>
         
         <Col md={4}>
           <ListGroup variant='flush'>
-          <ListGroup.Item>
-           <h3>{Perfume.name}</h3>
-          </ListGroup.Item>
-          <ListGroup.Item>
-           <Rating value={Perfume.rating} text={`${Perfume.numReviews} avaliações`} />
-            </ListGroup.Item>
-            <ListGroup.Item>Valor: ${Perfume.price}</ListGroup.Item>
             <ListGroup.Item>
-            Descrição: {Perfume.description}
-          </ListGroup.Item>
-        </ListGroup>
+              <h3>{perfume.name}</h3>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Rating value={perfume.rating} text={`${perfume.numReviews} avaliações`} />
+            </ListGroup.Item>
+            <ListGroup.Item>Valor: ${perfume.price}</ListGroup.Item>
+            <ListGroup.Item>
+              Descrição: {perfume.description}
+            </ListGroup.Item>
+          </ListGroup>
         </Col>
 
         <Col md={3}>
@@ -41,7 +62,7 @@ const ProductScreen = () => {
                 <Row>
                   <Col>Valor:</Col>
                   <Col>
-                    <strong>${Perfume.price}</strong>
+                    <strong>${perfume.price}</strong>
                   </Col>
                 </Row>
               </ListGroup.Item>
@@ -49,15 +70,15 @@ const ProductScreen = () => {
                 <Row>
                   <Col>Status:</Col>
                   <Col>
-                    <strong>{Perfume.countInStock > 0 ? "Em estoque" : "Fora de estoque"}</strong>
+                    <strong>{perfume.countInStock > 0 ? "Em estoque" : "Fora de estoque"}</strong>
                   </Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button
                   className='btn-block'
-                  type='butoon'
-                  disabled = {Perfume.countInStock === 0}
+                  type='button'
+                  disabled={perfume.countInStock === 0}
                 >
                   Adicionar ao carrinho
                 </Button>
@@ -67,7 +88,7 @@ const ProductScreen = () => {
         </Col>
       </Row>
     </>
-  )
+  );
 }
 
-export default ProductScreen
+export default ProductScreen;
