@@ -1,10 +1,10 @@
+// data/perfumes.js
 const Perfumes = [
   {
     _id: "1",
     name: "Cerejeira Perfume",
     image: "/images/cerejeira-perfume.jpg",
-    description:
-      "",
+    description: "Un perfume fresco y floral que evoca la belleza de la primavera.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 189.99,
@@ -14,10 +14,9 @@ const Perfumes = [
   },
   {
     _id: "2",
-    name: "Flor_rosa Perfume",
+    name: "Flor Rosa Perfume",
     image: "/images/flor-rosa-perfume.jpg",
-    description:
-      "",
+    description: "Perfume dulce y romántico, perfecto para ocasiones especiales.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 159.99,
@@ -27,10 +26,9 @@ const Perfumes = [
   },
   {
     _id: "3",
-    name: "lírio Perfume",
+    name: "Lírio Perfume",
     image: "/images/lírio-perfume.jpg",
-    description:
-      "",
+    description: "Elegante y sofisticado, ideal para la mujer moderna.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 229.99,
@@ -41,9 +39,8 @@ const Perfumes = [
   {
     _id: "4",
     name: "Mar Perfume",
-    image: "/images/mar perfume.jpg",
-    description:
-      "",
+    image: "/images/mar-perfume.jpg",
+    description: "Un aroma fresco que recuerda el océano y la brisa marina.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 249.99,
@@ -54,9 +51,8 @@ const Perfumes = [
   {
     _id: "5",
     name: "Orquídea Perfume",
-    image: "/images/orquídea -perfume.jpg",
-    description:
-      " ",
+    image: "/images/orquídea-perfume.jpg",
+    description: "Perfume exótico con notas florales y frutales.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 249.99,
@@ -68,8 +64,7 @@ const Perfumes = [
     _id: "6",
     name: "Tulipe Perfume",
     image: "/images/Tulipe-perfume.jpg",
-    description:
-      " ",
+    description: "Fragancia envolvente que combina frescura y calidez.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 199.99,
@@ -81,8 +76,7 @@ const Perfumes = [
     _id: "7",
     name: "Jasmin Perfume",
     image: "/images/Jasmim-perfume.jpg",
-    description:
-      " ",
+    description: "Una fragancia dulce que evoca la noche estrellada.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 180.00,
@@ -94,8 +88,7 @@ const Perfumes = [
     _id: "8",
     name: "Mulher Perfume",
     image: "/images/Perfume-feminino.jpg",
-    description:
-      " ",
+    description: "Aroma sutil y elegante para la mujer moderna.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 160.00,
@@ -105,10 +98,9 @@ const Perfumes = [
   },
   {
     _id: "9",
-    name: "Capim-dos-pampas perfume",
-    image: "/images/Capim-dos-pampas perfume.jpg",
-    description:
-      " ",
+    name: "Capim-dos-pampas Perfume",
+    image: "/images/Capim-dos-pampas-perfume.jpg",
+    description: "Una fragancia fresca que captura la esencia de la naturaleza.",
     brand: "Tulipe",
     category: "Natural Perfume",
     price: 200.00,
@@ -117,5 +109,5 @@ const Perfumes = [
     numReviews: 16,
   },
 ];
- 
+
 export default Perfumes;
