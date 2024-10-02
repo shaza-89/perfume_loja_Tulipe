@@ -1,41 +1,42 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Row, Col, ListGroup, Image, Button, Card } from 'react-bootstrap';
+import { Row, Col, ListGroup, Image, Button, Card } from "react-bootstrap";
 import { FaTrash } from 'react-icons/fa';
 import Message from '../components/Message';
 import Perfumes from '../Products';
 
 const CartScreen = () => {
-    const hasPerfumes = Perfumes.length > 0;
+    const cartItems = Perfumes; // Aquí deberías obtener los artículos del carrito
 
-    // Aquí asumimos que cada perfume tiene una propiedad `quantity`
-    const subtotal = hasPerfumes
-        ? Perfumes.reduce((acc, perfume) => acc + perfume.price * perfume.quantity, 0)
-        : 0;
+    const getSubtotal = () => {
+        return cartItems.reduce((acc, item) => acc + item.price, 0); // Calcula el subtotal
+    };
 
     return (
         <Row>
             <Col md={8}>
                 <h1 style={{ marginBottom: '20px' }}>Carrinho de compras</h1>
-                {!hasPerfumes ? (
+                {cartItems.length === 0 ? (
                     <Message>
                         Seu carrinho está vazio <Link to="/">Voltar</Link>
                     </Message>
                 ) : (
                     <ListGroup variant='flush'>
-                        {Perfumes.map((Perfume) => (
-                            <ListGroup.Item key={Perfume._id}>
+                        {cartItems.map((perfume) => (
+                            <ListGroup.Item key={perfume._id}>
                                 <Row>
                                     <Col md={2}>
-                                        <Image src={Perfume.image} alt={Perfume.name} fluid rounded />
+                                        <Image src={perfume.image} alt={perfume.name} fluid rounded />
                                     </Col>
                                     <Col md={3}>
-                                        <Link to={`/perfume/${Perfume._id}`}>{Perfume.name}</Link>
+                                        <Link to={`/perfume/${perfume._id}`}>{perfume.name}</Link>
                                     </Col>
-                                    <Col md={2}>${Perfume.price}</Col>
-                                    <Col md={2}>{Perfume.quantity} Unid</Col>
+                                    <Col md={2}>${perfume.price}</Col>
                                     <Col md={2}>
-                                        <Button type='button' variant='light' aria-label={`Remove ${Perfume.name}`}>
+                                        Unid
+                                    </Col>
+                                    <Col md={2}>
+                                        <Button type='button' variant='light'>
                                             <FaTrash />
                                         </Button>
                                     </Col>
@@ -48,8 +49,8 @@ const CartScreen = () => {
             <Col md={4}>
                 <Card>
                     <ListGroup variant='flush'>
-                        <ListGroup.Item>
-                            <h2>Subtotal: ${subtotal.toFixed(2)} ({Perfumes.reduce((acc, perfume) => acc + perfume.quantity, 0)} Unid)</h2>
+                        <ListGroup.Item>                         
+                            <h2>Subtotal: ${getSubtotal().toFixed(2)} ({cartItems.length} Unid)</h2>
                         </ListGroup.Item>
                         <ListGroup.Item>
                             <Button type='button' className='btn-block'>
@@ -57,7 +58,7 @@ const CartScreen = () => {
                             </Button>
                         </ListGroup.Item>
                     </ListGroup>
-                </Card>
+                </Card> 
             </Col>
         </Row>
     );
