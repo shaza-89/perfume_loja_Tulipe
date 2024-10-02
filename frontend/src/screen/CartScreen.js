@@ -1,16 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Row, Col, ListGroup, Image, Button, Card } from "react-bootstrap";
 import { FaTrash } from 'react-icons/fa';
 import Message from '../components/Message';
-import Perfumes from '../Products';
+import axios from 'axios';
 
 const CartScreen = () => {
-    const cartItems = Perfumes; // Aquí deberías obtener los artículos del carrito
+    const [cartItems, setCartItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const fetchCartItems = async () => {
+            try {
+                const { data } = await axios.get('/api/cart'); // Asegúrate de tener esta ruta en tu backend
+                setCartItems(data);
+                setLoading(false);
+            } catch (error) {
+                setError('Erro ao carregar os itens do carrinho');
+                setLoading(false);
+            }
+        };
+
+        fetchCartItems();
+    }, []);
 
     const getSubtotal = () => {
         return cartItems.reduce((acc, item) => acc + item.price, 0); // Calcula el subtotal
     };
+
+    const removeFromCartHandler = (id) => {
+        // Lógica para eliminar el producto del carrito
+        console.log(`Eliminar producto con ID: ${id}`);
+        // Aquí puedes implementar la lógica para eliminar el producto del backend
+    };
+
+    if (loading) return <div>Carregando...</div>;
+    if (error) return <div>{error}</div>;
 
     return (
         <Row>
@@ -36,7 +62,11 @@ const CartScreen = () => {
                                         Unid
                                     </Col>
                                     <Col md={2}>
-                                        <Button type='button' variant='light'>
+                                        <Button 
+                                            type='button' 
+                                            variant='light' 
+                                            onClick={() => removeFromCartHandler(perfume._id)} // Agrega la función para eliminar
+                                        >
                                             <FaTrash />
                                         </Button>
                                     </Col>
