@@ -1,15 +1,47 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import FormContainer from '../components/FormContainer';
 
 const LoginScreen = () => {
+  const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const submitHandler = async (e) => {
-        e.preventDefault()
-        console.log('submit')
+    const [error, setError] = useState(null);
+
+    const  submitHandler  = async (e) => {
+      e.preventDefault();
+      // console.log('submit')
+       try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            };
+
+            const { data } = await axios.post(
+                '/api/users/login',
+                { email, password },
+                config
+            );
+
+        //  console.log(data);  
+         
+          if (data.error) {
+        setError(data.error);
+      } else {
+        localStorage.setItem('userInfo', JSON.stringify(data));
+        navigate('/');
+      }
+
+    } catch (error) {
+      setError('Erro ao realizar login. Verifique seu e-mail ou senha.');
     }
+    
+  };
+      
+  
 
     return (
         <FormContainer>
@@ -39,6 +71,8 @@ const LoginScreen = () => {
         <Button className='mt-2' type='submit' variant='primary'>
           Entrar
         </Button>
+              {error && <p>{error}</p>}
+
       </Form>
 
       <Row className='py-3'>

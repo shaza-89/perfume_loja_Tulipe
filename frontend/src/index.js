@@ -7,7 +7,7 @@ import {
   Route,
   RouterProvider
 } from "react-router-dom"
-import './assests/styles/bootstrap.custom.css';
+import "./assests/styles/bootstrap.custom.css";
 import './assests/styles/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -16,6 +16,9 @@ import ProductScreen from './screen/ProductScreen';
 import LoginScreen from './screen/LoginScreen';
 import CartScreen from './screen/CartScreen';
 import RegisterScreen from './screen/RegisterScreen';
+import { CartProvider } from './components/cartContext';
+import ShippingScreen from './screen/ShippingScreen';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,7 +27,9 @@ const router = createBrowserRouter(
       <Route path='/Perfume/:id' element={<ProductScreen />} />
       <Route path='/login' element={<LoginScreen />} />
       <Route path='/Cart' element={<CartScreen />} />
-       <Route path='/register' element={<RegisterScreen />} />
+      <Route path='/register' element={<RegisterScreen />} />
+      <Route path='/shipping' element={<ShippingScreen />} />
+
 
 
 
@@ -35,10 +40,14 @@ const router = createBrowserRouter(
   )
 )
 
+ 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CartProvider>
+ 
+      <RouterProvider router={router} />
+       </CartProvider>
   </React.StrictMode>
 );
 

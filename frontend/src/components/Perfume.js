@@ -1,8 +1,8 @@
 import React from 'react'
 import { Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import Perfumes from '../Products'
 import Rating from './Rating'
+import Perfumes from './Products'
 
 const Perfume = ({Perfume}) => {
   return (
